@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Syndication Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">ContentSync Pro</h2>
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#sources" class="nav-link" data-section="sources">
+                        <span class="nav-icon">📡</span>
+                        Content Sources
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#scraping" class="nav-link" data-section="scraping">
+                        <span class="nav-icon">🔍</span>
+                        Scraping Monitor
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#library" class="nav-link" data-section="library">
+                        <span class="nav-icon">📚</span>
+                        Content Library
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#distribution" class="nav-link" data-section="distribution">
+                        <span class="nav-icon">🚀</span>
+                        Distribution
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#monetization" class="nav-link" data-section="monetization">
+                        <span class="nav-icon">💰</span>
+                        Monetization
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#deployment" class="nav-link" data-section="deployment">
+                        <span class="nav-icon">⚙️</span>
+                        Deployment
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#compliance" class="nav-link" data-section="compliance">
+                        <span class="nav-icon">🛡️</span>
+                        Compliance
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <div class="system-status">
+                        <span class="status status--success" id="systemStatus">System Running</span>
+                    </div>
+                </div>
+
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="card metric-card">
+                        <div class="card__body">
+                            <h3>Articles Processed</h3>
+                            <div class="metric-value">1,847</div>
+                            <div class="metric-change positive">+15.7%</div>
+                        </div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="card__body">
+                            <h3>Platforms Active</h3>
+                            <div class="metric-value">4</div>
+                            <div class="metric-change positive">+1</div>
+                        </div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="card__body">
+                            <h3>Monthly Revenue</h3>
+                            <div class="metric-value">$2,340</div>
+                            <div class="metric-change positive">+12.3%</div>
+                        </div>
+                    </div>
+                    <div class="card metric-card">
+                        <div class="card__body">
+                            <h3>Subscriber Growth</h3>
+                            <div class="metric-value">15.7%</div>
+                            <div class="metric-change positive">+2.1%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Status -->
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Service Health</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="service-list" id="serviceList">
+                                <!-- Services populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="activity-feed" id="activityFeed">
+                                <!-- Activity populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Architecture Diagram -->
+                <div class="card">
+                    <div class="card__header">
+                        <h3>System Architecture</h3>
+                    </div>
+                    <div class="card__body">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1748849668/gpt4o_images/fks89jwv29mysv99ii96.png" alt="System Architecture" class="architecture-diagram">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Sources Section -->
+            <section id="sources" class="content-section">
+                <div class="section-header">
+                    <h1>Content Sources</h1>
+                    <button class="btn btn--primary" onclick="openModal('addSourceModal')">Add Source</button>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <div class="sources-table" id="sourcesTable">
+                            <!-- Sources populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scraping Monitor Section -->
+            <section id="scraping" class="content-section">
+                <div class="section-header">
+                    <h1>Scraping Monitor</h1>
+                    <div class="flex gap-8">
+                        <button class="btn btn--secondary" onclick="refreshScrapingLogs()">Refresh</button>
+                        <button class="btn btn--primary" onclick="startScraping()">Start Scraping</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Real-time Logs</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="logs-container" id="scrapingLogs">
+                            <!-- Logs populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Library Section -->
+            <section id="library" class="content-section">
+                <div class="section-header">
+                    <h1>Content Library</h1>
+                    <div class="search-filters">
+                        <input type="text" class="form-control" placeholder="Search content..." id="contentSearch">
+                        <select class="form-control" id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="enhanced">Enhanced</option>
+                            <option value="processing">Processing</option>
+                            <option value="draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="content-grid" id="contentLibrary">
+                    <!-- Content items populated by JS -->
+                </div>
+            </section>
+
+            <!-- Distribution Section -->
+            <section id="distribution" class="content-section">
+                <div class="section-header">
+                    <h1>Distribution Settings</h1>
+                    <button class="btn btn--primary" onclick="openModal('addPlatformModal')">Connect Platform</button>
+                </div>
+
+                <div class="platforms-grid" id="platformsGrid">
+                    <!-- Platforms populated by JS -->
+                </div>
+            </section>
+
+            <!-- Monetization Section -->
+            <section id="monetization" class="content-section">
+                <div class="section-header">
+                    <h1>Monetization Tracker</h1>
+                    <div class="revenue-summary">
+                        <span class="revenue-amount">$2,340</span>
+                        <span class="revenue-period">This Month</span>
+                    </div>
+                </div>
+
+                <div class="monetization-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Revenue Breakdown</h3>
+                        </div>
+                        <div class="card__body">
+                            <canvas id="revenueChart" height="200"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Subscription Tiers</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="subscription-stats" id="subscriptionStats">
+                                <!-- Stats populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deployment Section -->
+            <section id="deployment" class="content-section">
+                <div class="section-header">
+                    <h1>Deployment Tools</h1>
+                    <div class="deployment-status">
+                        <span class="status status--success">Production Ready</span>
+                    </div>
+                </div>
+
+                <div class="deployment-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Infrastructure Status</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="infrastructure-list">
+                                <div class="infra-item">
+                                    <span class="infra-name">Cloud Run Scrapers</span>
+                                    <span class="status status--success">Running</span>
+                                </div>
+                                <div class="infra-item">
+                                    <span class="infra-name">Vertex AI</span>
+                                    <span class="status status--success">Active</span>
+                                </div>
+                                <div class="infra-item">
+                                    <span class="infra-name">Firestore</span>
+                                    <span class="status status--success">Connected</span>
+                                </div>
+                                <div class="infra-item">
+                                    <span class="infra-name">Cloud Scheduler</span>
+                                    <span class="status status--warning">Rate Limited</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Deployment Controls</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="deployment-actions">
+                                <button class="btn btn--secondary btn--full-width">View Terraform Config</button>
+                                <button class="btn btn--secondary btn--full-width">Download Setup Guide</button>
+                                <button class="btn btn--outline btn--full-width">Restart Services</button>
+                                <button class="btn btn--outline btn--full-width">Scale Resources</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Compliance Section -->
+            <section id="compliance" class="content-section">
+                <div class="section-header">
+                    <h1>Legal Compliance</h1>
+                    <div class="compliance-status">
+                        <span class="status status--success">Compliant</span>
+                    </div>
+                </div>
+
+                <div class="compliance-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>GDPR Settings</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="compliance-toggle">
+                                <label class="toggle-label">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                    Data Processing Consent
+                                </label>
+                            </div>
+                            <div class="compliance-toggle">
+                                <label class="toggle-label">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                    Cookie Tracking
+                                </label>
+                            </div>
+                            <div class="compliance-toggle">
+                                <label class="toggle-label">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                    Data Retention Policy
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Content Attribution</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="form-label">Attribution Template</label>
+                                <textarea class="form-control" rows="4">Source: {source_name} | Original: {original_url} | Enhanced by AI</textarea>
+                            </div>
+                            <button class="btn btn--primary">Update Template</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="addSourceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Content Source</h3>
+                <button class="modal-close" onclick="closeModal('addSourceModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Source Name</label>
+                    <input type="text" class="form-control" placeholder="Enter source name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Source Type</label>
+                    <select class="form-control">
+                        <option value="RSS">RSS Feed</option>
+                        <option value="HTML">HTML Scraping</option>
+                        <option value="API">API Integration</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">URL</label>
+                    <input type="url" class="form-control" placeholder="https://example.com/feed">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--secondary" onclick="closeModal('addSourceModal')">Cancel</button>
+                <button class="btn btn--primary">Add Source</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="addPlatformModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Connect Platform</h3>
+                <button class="modal-close" onclick="closeModal('addPlatformModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="platform-options">
+                    <div class="platform-option">
+                        <span class="platform-icon">💼</span>
+                        <span class="platform-name">LinkedIn</span>
+                        <button class="btn btn--primary btn--sm">Connect</button>
+                    </div>
+                    <div class="platform-option">
+                        <span class="platform-icon">🐦</span>
+                        <span class="platform-name">Twitter</span>
+                        <button class="btn btn--primary btn--sm">Connect</button>
+                    </div>
+                    <div class="platform-option">
+                        <span class="platform-icon">📝</span>
+                        <span class="platform-name">Medium</span>
+                        <button class="btn btn--primary btn--sm">Connect</button>
+                    </div>
+                    <div class="platform-option">
+                        <span class="platform-icon">📧</span>
+                        <span class="platform-name">Substack</span>
+                        <button class="btn btn--primary btn--sm">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
